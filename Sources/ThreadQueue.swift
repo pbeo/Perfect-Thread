@@ -176,13 +176,13 @@ public extension Threading {
     
     /// Call the given closure on the "default" concurrent queue
     /// Returns immediately.
-    public static func dispatch(closure: Threading.ThreadClosure) {
+    public static func dispatch(_ closure: Threading.ThreadClosure) {
         let q = Threading.getQueue(name: "default", type: .concurrent)
         q.dispatch(closure)
     }
     
     // This is a lower level function which does not utilize the ThreadQueue system.
-    private static func dispatchOnNewThread(closure: ThreadClosure) {
+    private static func dispatchOnNewThread(_ closure: ThreadClosure) {
     #if os(Linux)
         var thrdSlf = pthread_t()
     #else
